@@ -1,48 +1,30 @@
-const apikey = "4f0c5f237b428cfe861db9dc06e5875a";
+const value = document.querySelector("#value");
+const div = document.querySelector("#hero");
 
-const main = document.getElementById("main");
-const form = document.getElementById("form");
-const search = document.getElementById("search");
+value.addEventListener("click", (e) => {
+  e.preventDefault;
+  randomHero();
+});
 
-const url = (location) =>
-  `https://api.openweathermap.org/data/2.5/weather?q=${location}&appid=${apikey}`;
+async function randomHero() {
+  let randNum = Math.floor(Math.random() * 731);
 
-async function getWeather(location) {
-  const resp = await fetch(url(location), {
-    origin: "cors",
-  });
+  const url = `https://superheroapi.com/api/5403619933063113/${randNum}`;
+  const resp = await fetch(url);
   const respData = await resp.json();
-
   console.log(respData);
-  addWeatherToPage(respData);
+  addHeroToPage(respData);
 }
 
-function addWeatherToPage(data) {
-  const temp = KtoC(data.main.temp);
+function addHeroToPage(data) {
+  const hero = document.createElement("div");
+  hero.classList.add("hero");
 
-  const weather = document.createElement("div");
-  weather.classList.add("weather");
-
-  weather.innerHTML = `
-        <h2><img src="https://openweathermap.org/img/wn/${data.weather[0].icon}@2x.png"/> ${temp}°C <img src="https://openweathermap.org/img/wn/${data.weather[0].icon}@2x.png"/></h2>
-        <small>${data.weather[0].main}</small>
-        
+  hero.innerHTML = `
+        <h2>Tu es ${data.name}</h2>
+        <img src="${data.image.url}"/>
     `;
 
-  main.innerHTML = "";
-  main.appendChild(weather);
+  div.innerHTML = "";
+  div.appendChild(hero);
 }
-
-function KtoC(K) {
-  return Math.floor(K - 273.15);
-}
-
-form.addEventListener("submit", (e) => {
-  e.preventDefault();
-
-  const location = search.value;
-
-  if (location) {
-    getWeather(location);
-  }
-});

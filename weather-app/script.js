@@ -12,9 +12,8 @@ async function getWeather(location) {
     origin: "cors",
   });
   const respData = await resp.json();
-
-  console.log(respData);
   addWeatherToPage(respData);
+  console.log(respData);
 }
 
 function addWeatherToPage(data) {

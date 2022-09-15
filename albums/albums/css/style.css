@@ -1,0 +1,203 @@
+/*
+  https://developer.mozilla.org/en/docs/Web/CSS/box-shadow
+  box-shadow: [inset?] [top] [left] [blur] [size] [color];
+
+  Tips:
+    - We're setting all the blurs to 0 since we want a solid fill.
+    - Add the inset keyword so the box-shadow is on the inside of the element
+    - Animating the inset shadow on hover looks like the element is filling in from whatever side you specify ([top] and [left] accept negative values to become [bottom] and [right])
+    - Multiple shadows can be stacked
+    - If you're animating multiple shadows, be sure to keep the same number of shadows on hover/focus as non-hover/focus (even if you have to create a transparent shadow) so the animation is smooth. Otherwise, you'll get something choppy.
+*/
+@-webkit-keyframes pulse {
+  0% {
+    -webkit-box-shadow: 0 0 0 0 var(--hover);
+            box-shadow: 0 0 0 0 var(--hover);
+  }
+}
+@keyframes pulse {
+  0% {
+    -webkit-box-shadow: 0 0 0 0 var(--hover);
+            box-shadow: 0 0 0 0 var(--hover);
+  }
+}
+
+.offset {
+  -webkit-box-shadow: 0.3em 0.3em 0 0 var(--color), inset 0.3em 0.3em 0 0 var(--color);
+          box-shadow: 0.3em 0.3em 0 0 var(--color), inset 0.3em 0.3em 0 0 var(--color);
+}
+
+.offset:hover {
+  -webkit-box-shadow: 0 0 0 0 var(--hover), inset 6em 3.5em 0 0 var(--hover);
+          box-shadow: 0 0 0 0 var(--hover), inset 6em 3.5em 0 0 var(--hover);
+}
+
+.offset {
+  --color: #e41111;
+  --hover: #11c1e4;
+}
+
+button {
+  color: var(--color);
+  -webkit-transition: 0.25s;
+  transition: 0.25s;
+}
+
+button:hover {
+  border-color: var(--hover);
+  color: white;
+}
+
+body {
+  color: #fff;
+  background: #1a234d;
+  font: 300 1em 'Fira Sans', sans-serif;
+  height: 100%;
+}
+
+header {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  padding: 20px 10px 40px;
+}
+
+nav {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+button {
+  background: none;
+  border: 2px solid;
+  font: inherit;
+  line-height: 1;
+  margin: 1em;
+  margin-bottom: 3.5em;
+  padding: 1em 2em;
+}
+
+h1 {
+  font-size: 3em;
+  font-weight: 500;
+}
+
+section {
+  padding-bottom: 100px;
+}
+
+img {
+  max-width: auto;
+  width: 280px;
+  min-width: 200px;
+}
+
+.card {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.grid {
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: 1fr 1fr;
+      grid-template-columns: 1fr 1fr;
+  -ms-grid-rows: 1fr 1fr 1fr 1fr 1fr;
+      grid-template-rows: 1fr 1fr 1fr 1fr 1fr;
+  gap: 5em 5em;
+      grid-template-areas: "album1 album2" "album3 album4" "album5 album6" "album7 album8" "album9 album10";
+}
+
+.album1 {
+  -ms-grid-row: 1;
+  -ms-grid-column: 1;
+  grid-area: album1;
+}
+
+.album2 {
+  -ms-grid-row: 1;
+  -ms-grid-column: 2;
+  grid-area: album2;
+}
+
+.album3 {
+  -ms-grid-row: 2;
+  -ms-grid-column: 1;
+  grid-area: album3;
+}
+
+.album4 {
+  -ms-grid-row: 2;
+  -ms-grid-column: 2;
+  grid-area: album4;
+}
+
+.album5 {
+  -ms-grid-row: 3;
+  -ms-grid-column: 1;
+  grid-area: album5;
+}
+
+.album6 {
+  -ms-grid-row: 3;
+  -ms-grid-column: 2;
+  grid-area: album6;
+}
+
+.album7 {
+  -ms-grid-row: 4;
+  -ms-grid-column: 1;
+  grid-area: album7;
+}
+
+.album8 {
+  -ms-grid-row: 4;
+  -ms-grid-column: 2;
+  grid-area: album8;
+}
+
+.album9 {
+  -ms-grid-row: 5;
+  -ms-grid-column: 1;
+  grid-area: album9;
+}
+
+.album10 {
+  -ms-grid-row: 5;
+  -ms-grid-column: 2;
+  grid-area: album10;
+}
+
+.link {
+  color: #e41111;
+  text-decoration: underline;
+}
+
+a {
+  color: #fff;
+  text-decoration: none;
+}
+/*# sourceMappingURL=style.css.map */

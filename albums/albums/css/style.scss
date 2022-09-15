@@ -1,0 +1,139 @@
+/*
+  https://developer.mozilla.org/en/docs/Web/CSS/box-shadow
+  box-shadow: [inset?] [top] [left] [blur] [size] [color];
+
+  Tips:
+    - We're setting all the blurs to 0 since we want a solid fill.
+    - Add the inset keyword so the box-shadow is on the inside of the element
+    - Animating the inset shadow on hover looks like the element is filling in from whatever side you specify ([top] and [left] accept negative values to become [bottom] and [right])
+    - Multiple shadows can be stacked
+    - If you're animating multiple shadows, be sure to keep the same number of shadows on hover/focus as non-hover/focus (even if you have to create a transparent shadow) so the animation is smooth. Otherwise, you'll get something choppy.
+*/
+
+
+@keyframes pulse {
+  0% { box-shadow: 0 0 0 0 var(--hover); }
+}
+
+// Multiple shadows, one on the outside, another on the inside
+.offset {  
+  box-shadow: 
+    0.3em 0.3em 0 0 var(--color),
+    inset 0.3em 0.3em 0 0 var(--color);
+  
+  &:hover{
+    box-shadow: 
+      0 0 0 0 var(--hover),
+      inset 6em 3.5em 0 0 var(--hover);
+  }
+}
+
+//=== Set button colors
+// If you wonder why use Sass vars or CSS custom properties...
+  // Make a map with the class names and matching colors
+$colors: (
+  offset: #e41111
+);
+
+// Sass variables compile to a static string; CSS variables are dynamic and inherited
+  // Loop through the map and set CSS custom properties using Sass variables
+@each $button, $color in $colors {
+  .#{$button} {
+    --color: #{$color};
+    --hover: #{adjust-hue($color, 190deg)};
+  }
+}
+
+// Now every button will have different colors as set above. We get to use the same structure, only changing the custom properties.
+button {  
+  color: var(--color);
+  transition: 0.25s;
+  
+  &:hover{ 
+    border-color: var(--hover);
+    color: rgb(255, 255, 255);
+  }
+}
+
+//=== Pen styling, ignore
+body {
+  color: #fff;
+  background: hsl(229, 50%, 20%);
+  font: 300 1em 'Fira Sans', sans-serif;
+  height: 100%;
+}
+
+header {
+  display:flex;
+  flex-direction: column;
+  align-items:center;
+  padding: 20px 10px 40px;
+}
+
+nav {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+// Basic button styles
+button {
+  background: none;
+  border: 2px solid;
+  font: inherit;
+  line-height: 1;
+  margin: 1em;
+  margin-bottom: 3.5em;
+  padding: 1em 2em;
+}
+
+h1 { 
+
+  font-size: 3em;
+  font-weight: 500;
+ }
+
+section {
+  padding-bottom: 100px;
+}
+
+img {
+  max-width: auto;
+  width: 280px;
+  min-width: 200px;
+ }
+.card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.grid {
+  display: grid; 
+  grid-template-columns: 1fr 1fr; 
+  grid-template-rows: 1fr 1fr 1fr 1fr 1fr; 
+  gap: 5em 5em; 
+  grid-template-areas: 
+    "album1 album2"
+    "album3 album4"
+    "album5 album6"
+    "album7 album8"
+    "album9 album10"; 
+}
+.album1 { grid-area: album1; }
+.album2 { grid-area: album2; }
+.album3 { grid-area: album3; }
+.album4 { grid-area: album4; }
+.album5 { grid-area: album5; }
+.album6 { grid-area: album6; }
+.album7 { grid-area: album7; }
+.album8 { grid-area: album8; }
+.album9 { grid-area: album9; }
+.album10 { grid-area: album10; }
+
+.link {
+  color: #e41111;
+  text-decoration: underline;
+}
+a {
+  color: #fff;
+  text-decoration: none;
+}

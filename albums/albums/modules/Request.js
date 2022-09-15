@@ -13,5 +13,7 @@ export default class Request {
 
   async getData() {
     const data = await this.fetchData();
+    const hero = await data.name;
+    return hero;
   }
 }

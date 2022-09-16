@@ -6,6 +6,7 @@ export default class request {
   async fetchData() {
     const resp = await fetch(this.url);
     const respData = await resp.json();
+    console.log(respData);
     return respData;
   }
 

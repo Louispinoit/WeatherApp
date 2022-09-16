@@ -1,21 +1,16 @@
-class Request {
+export default class request {
   constructor(url) {
     this.url = url;
   }
 
   async fetchData() {
-    const response = new Promise((res) => {
-      setTimeout(() => res(fetch(this.url), 1000));
-    });
-    let result = await response;
-    return result.json();
+    const resp = await fetch(this.url);
+    const respData = await resp.json();
+    return respData;
   }
 
   async getData() {
-    const data = await this.fetchData();
-    const albums = await data.results.albummatches.album;
-    return albums;
+    const hero = await this.fetchData();
+    return hero;
   }
 }
-
-export default Request;
